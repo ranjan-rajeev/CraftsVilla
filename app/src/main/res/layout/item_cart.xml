@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="8dp"
+    android:background="@android:color/white">
+
+    <ImageView
+        android:id="@+id/ivFeatureImage"
+        android:layout_width="70dp"
+        android:layout_height="100dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="10dp" />
+
+    <TextView
+        android:id="@+id/prodDesc"
+        style="@style/TextViewStyle.Small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="8dp"
+        android:layout_toLeftOf="@+id/ivDelete"
+        android:layout_toRightOf="@+id/ivFeatureImage"
+        android:maxLines="2"
+        android:padding="5dp"
+        android:text="desc" />
+
+    <ImageView
+        android:id="@+id/ivDelete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:src="@android:drawable/ic_delete" />
+
+    <TextView
+        android:id="@+id/tvAmount"
+        style="@style/TextViewStyle.Small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/prodDesc"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_toLeftOf="@+id/ivDelete"
+        android:layout_toRightOf="@+id/ivFeatureImage"
+        android:maxLines="1"
+        android:text="desc"
+        android:textColor="@color/black"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tvQ"
+        style="@style/TextViewStyle.Small"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_alignBottom="@+id/tvMinus"
+        android:layout_alignLeft="@+id/tvAmount"
+        android:layout_alignStart="@+id/tvAmount"
+        android:layout_marginRight="5dp"
+        android:gravity="center"
+        android:maxLines="1"
+        android:text="Qty : " />
+
+
+    <TextView
+        android:id="@+id/tvMinus"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_below="@+id/tvAmount"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_toRightOf="@+id/tvQ"
+        android:background="@drawable/badge_background"
+        android:gravity="center"
+        android:padding="3dp"
+        android:text="-"
+        android:textColor="@android:color/white"
+        android:textSize="10sp" />
+
+    <TextView
+        android:id="@+id/tvCount"
+        style="@style/TextViewStyle.Small"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_alignBottom="@+id/tvMinus"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_toEndOf="@+id/tvMinus"
+        android:layout_toRightOf="@+id/tvMinus"
+        android:gravity="center"
+        android:maxLines="1"
+        android:text="1"
+        android:textColor="@color/black" />
+
+    <TextView
+        android:id="@+id/tvPlus"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_below="@+id/tvAmount"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_toRightOf="@+id/tvCount"
+        android:background="@drawable/badge_background"
+        android:gravity="center"
+        android:padding="3dp"
+        android:text="+"
+        android:textColor="@android:color/white"
+        android:textSize="10sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/ivFeatureImage"
+        android:background="@color/seperator" />
+
+</RelativeLayout>

@@ -13,12 +13,16 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.craftsvilla.cart.CartActivity;
 import com.craftsvilla.dashboard.DashboardFragment;
+import com.craftsvilla.database.DatabaseController;
+import com.craftsvilla.model.CartEntity;
 import com.synnapps.carouselview.CarouselView;
 import com.synnapps.carouselview.ImageClickListener;
 import com.synnapps.carouselview.ImageListener;
@@ -33,22 +37,37 @@ public class MainActivity extends AppCompatActivity {
     //region variables
     boolean doubleBackToExitPressedOnce = false;
     TextView textCartItemCount;
-    int mCartItemCount = 10;
-
+    int mCartItemCount = 0;
+    DatabaseController databaseController;
+    CartEntity cartEntity;
     //endregion
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setSoftInputMode(
+                WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        databaseController = new DatabaseController(this);
+        cartEntity = databaseController.getCart();
         mTextMessage = (TextView) findViewById(R.id.message);
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        navigation.setSelectedItemId(R.id.navigation_home);
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        cartEntity = databaseController.getCart();
+        if (cartEntity != null && cartEntity.getProductEntities() != null) {
+            mCartItemCount = cartEntity.getTotalItem();
+            setupBadge();
+        }
+    }
 
     //region menu
 
@@ -79,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()) {
 
             case R.id.action_cart: {
-                // Do something
+                startActivity(new Intent(this, CartActivity.class));
                 return true;
             }
         }

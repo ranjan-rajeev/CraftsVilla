@@ -8,4 +8,7 @@
     <string name="title_activity_splash_screen">"Splash "</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="title_activity_product_details">Details</string>
+    <string name="title_activity_product_zoom">Zoom</string>
+    <string name="title_activity_cart">My Cart</string>
 </resources>

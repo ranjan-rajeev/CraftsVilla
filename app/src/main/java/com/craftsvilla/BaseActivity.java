@@ -43,7 +43,8 @@ public class BaseActivity extends AppCompatActivity {
     }
 
     protected void showDialog(String msg) {
-        dialog = ProgressDialog.show(BaseActivity.this, "", msg, true);
+        if (dialog == null)
+            dialog = ProgressDialog.show(BaseActivity.this, "", msg, true);
     }
 }
 

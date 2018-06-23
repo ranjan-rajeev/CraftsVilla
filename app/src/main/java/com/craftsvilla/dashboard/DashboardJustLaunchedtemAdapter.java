@@ -1,16 +1,20 @@
 package com.craftsvilla.dashboard;
 
+import android.content.Intent;
+import android.graphics.Paint;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.craftsvilla.R;
 import com.craftsvilla.model.ProductEntity;
+import com.craftsvilla.productdetails.ProductDetailsActivity;
 
 import java.util.List;
 
@@ -28,7 +32,7 @@ public class DashboardJustLaunchedtemAdapter extends RecyclerView.Adapter<Recycl
     public class DashboardItemHolder extends RecyclerView.ViewHolder {
         ImageView ivProdImg;
         TextView tvDiscountedPrice, tvActualPrice, tvPercentOff;
-
+        LinearLayout llTop;
 
         public DashboardItemHolder(View view) {
             super(view);
@@ -36,6 +40,7 @@ public class DashboardJustLaunchedtemAdapter extends RecyclerView.Adapter<Recycl
             tvDiscountedPrice = (TextView) view.findViewById(R.id.tvDiscountedPrice);
             tvActualPrice = (TextView) view.findViewById(R.id.tvActualPrice);
             tvPercentOff = (TextView) view.findViewById(R.id.tvPercentOff);
+            llTop = (LinearLayout) view.findViewById(R.id.llTop);
         }
     }
 
@@ -53,14 +58,23 @@ public class DashboardJustLaunchedtemAdapter extends RecyclerView.Adapter<Recycl
     public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
 
         if (holder instanceof DashboardItemHolder) {
-            ProductEntity productEntity = productEntities.get(position);
+            final ProductEntity productEntity = productEntities.get(position);
 
-            Glide.with(mContext.getActivity()).load(productEntity.getProdImages().get(0))
-                    .fitCenter()
+            Glide.with(mContext.getActivity()).load(productEntity.getFeaturedImage())
+                    .centerCrop()
                     .placeholder(R.drawable.ic_action_cart).into(((DashboardItemHolder) holder).ivProdImg);
-            ((DashboardItemHolder) holder).tvDiscountedPrice.setText("" + productEntity.getProdDiscountedPrice());
+            ((DashboardItemHolder) holder).tvDiscountedPrice.setText("\u20B9 " + productEntity.getProdDiscountedPrice());
+            ((DashboardItemHolder) holder).tvActualPrice.setPaintFlags(((DashboardItemHolder) holder).tvActualPrice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
             ((DashboardItemHolder) holder).tvActualPrice.setText("" + productEntity.getProdActualPrice());
-            ((DashboardItemHolder) holder).tvPercentOff.setText("" + productEntity.getProdDiscPercentage());
+            ((DashboardItemHolder) holder).tvPercentOff.setText("" + productEntity.getProdDiscPercentage() + "% OFF");
+
+            ((DashboardItemHolder) holder).llTop.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    mContext.startActivity(new Intent(mContext.getActivity(), ProductDetailsActivity.class).putExtra("PRODUCT_ENTITY", productEntity));
+                }
+            });
+
         }
     }
 

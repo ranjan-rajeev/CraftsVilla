@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.craftsvilla.R;
+import com.craftsvilla.database.DatabaseController;
 import com.craftsvilla.model.ProductEntity;
 
 import java.util.ArrayList;
@@ -21,11 +22,11 @@ public class DashboardRowAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     private static final int ROW_TRENDING_SAREES = 2;
     private static int TOTAL_ROW = 3;
     Fragment mFragment;
-    //DBPersistanceController mReal;
+    DatabaseController databaseController;
 
     public DashboardRowAdapter(Fragment fragment) {
         mFragment = fragment;
-        // mReal = new DBPersistanceController(mFragment.getActivity());
+        databaseController = new DatabaseController(mFragment.getActivity());
     }
 
     public class JustLaunchHolder extends RecyclerView.ViewHolder {
@@ -99,32 +100,25 @@ public class DashboardRowAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
         if (holder instanceof JustLaunchHolder) {
             ((JustLaunchHolder) holder).tvHeader.setText("JUST LAUNCHED");
-            List<ProductEntity> productEntities = getJustLaunchList();
+            List<ProductEntity> productEntities = databaseController.getProductList(1);
 
-            ((JustLaunchHolder) holder).rvDashboard.setLayoutManager(new LinearLayoutManager(mFragment.getActivity(), LinearLayoutManager.HORIZONTAL, true));
+            ((JustLaunchHolder) holder).rvDashboard.setLayoutManager(new LinearLayoutManager(mFragment.getActivity(), LinearLayoutManager.HORIZONTAL, false));
             ((JustLaunchHolder) holder).rvDashboard.setAdapter(new DashboardJustLaunchedtemAdapter(mFragment, productEntities));
-
+            ((JustLaunchHolder) holder).rvDashboard.smoothScrollToPosition(0);
         } else if (holder instanceof ExclusiveCollectionHolder) {
             ((ExclusiveCollectionHolder) holder).tvHeader.setText("CRAFTSVILLA EXCLUSIVE COLLECTION");
-            List<ProductEntity> productEntities = getJustLaunchList();
+            List<ProductEntity> productEntities = databaseController.getProductList(2);
             ((ExclusiveCollectionHolder) holder).rvDashboard.setLayoutManager(new LinearLayoutManager(mFragment.getActivity()));
             ((ExclusiveCollectionHolder) holder).rvDashboard.setAdapter(new DashboardExclusiveCollectiontemAdapter(mFragment, productEntities));
 
         } else if (holder instanceof TrendingSareeHolder) {
             ((TrendingSareeHolder) holder).tvHeader.setText("TRENDING SAREES");
-            ((TrendingSareeHolder) holder).tvHeader.setText("JUST LAUNCHED");
-            List<ProductEntity> productEntities = getJustLaunchList();
-            ((TrendingSareeHolder) holder).rvDashboard.setLayoutManager(new LinearLayoutManager(mFragment.getActivity(), LinearLayoutManager.HORIZONTAL, true));
+            List<ProductEntity> productEntities = databaseController.getProductList(3);
+            ((TrendingSareeHolder) holder).rvDashboard.setLayoutManager(new LinearLayoutManager(mFragment.getActivity(), LinearLayoutManager.HORIZONTAL, false));
             ((TrendingSareeHolder) holder).rvDashboard.setAdapter(new DashboardJustLaunchedtemAdapter(mFragment, productEntities));
+            ((TrendingSareeHolder) holder).rvDashboard.smoothScrollToPosition(0);
         }
 
-    }
-
-    private List<ProductEntity> getJustLaunchList() {
-        List<ProductEntity> productEntities = new ArrayList<>();
-        for (int i = 0; i < 10; i++)
-            productEntities.add(new ProductEntity());
-        return productEntities;
     }
 
 
