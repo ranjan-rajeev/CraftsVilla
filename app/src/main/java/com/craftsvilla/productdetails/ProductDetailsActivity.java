@@ -3,6 +3,7 @@ package com.craftsvilla.productdetails;
 import android.content.Intent;
 import android.graphics.Paint;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.view.MenuItemCompat;
@@ -55,6 +56,7 @@ public class ProductDetailsActivity extends BaseActivity implements View.OnClick
     List<String> corosoulList;
 
     //endregion
+    CountDownTimer countDownTimer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,7 +75,19 @@ public class ProductDetailsActivity extends BaseActivity implements View.OnClick
         if (productEntity != null) {
             bindProductDetails(productEntity);
         }
+        countDownTimer = new CountDownTimer(2000, 1000) {
 
+            public void onTick(long millisUntilFinished) {
+                //here you can have your logic to set text to edittext
+                showDialog();
+            }
+
+            public void onFinish() {
+                startActivity(new Intent(ProductDetailsActivity.this, CartActivity.class));
+                cancelDialog();
+            }
+
+        };
     }
 
 
@@ -194,6 +208,7 @@ public class ProductDetailsActivity extends BaseActivity implements View.OnClick
                 if (checkIfProdAlreadyExhist(cartEntity, productEntity.getProdId())) {
                     Toast.makeText(this, "Item Already in Cart !!!", Toast.LENGTH_SHORT).show();
                     tvGoToCart.setText("Go to Cart");
+                    startActivity(new Intent(this, CartActivity.class));
                 } else {
                     if (cartEntity != null)
                         mCartItemCount = cartEntity.getTotalItem() + 1;
@@ -216,7 +231,8 @@ public class ProductDetailsActivity extends BaseActivity implements View.OnClick
                     else
                         mCartItemCount = 1;
                     new AsyncCartMaster(this, productEntity.getProdId(), 1).execute();
-                    startActivity(new Intent(this, CartActivity.class));
+                    //startActivity(new Intent(this, CartActivity.class));
+                    countDownTimer.start();
                     setupBadge();
                 }
                 break;

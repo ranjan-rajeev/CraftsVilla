@@ -45,7 +45,8 @@
                 android:layout_weight="40"
                 android:gravity="right"
                 android:text="Total Payable(6504)"
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                android:textStyle="bold" />
         </LinearLayout>
 
         <TextView
@@ -175,7 +176,8 @@
                 android:layout_weight="40"
                 android:gravity="right"
                 android:text="ITEMS(4)"
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                android:textStyle="bold" />
         </LinearLayout>
 
         <View

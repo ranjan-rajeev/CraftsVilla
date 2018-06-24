@@ -59,7 +59,7 @@ public class CartAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
         if (holder instanceof DashboardItemHolder) {
             final ProductEntity productEntity = productEntities.get(position);
-            ((DashboardItemHolder) holder).tvAmount.setText("" + productEntity.getProdDiscountedPrice());
+            ((DashboardItemHolder) holder).tvAmount.setText("\u20B9 " + productEntity.getProdDiscountedPrice());
             ((DashboardItemHolder) holder).tvCount.setText("" + productEntity.getProdQuantity());
             ((DashboardItemHolder) holder).prodDesc.setText("" + productEntity.getProdDesc());
 

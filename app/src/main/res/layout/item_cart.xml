@@ -18,7 +18,7 @@
         style="@style/TextViewStyle.Small"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginRight="8dp"
+        android:layout_marginRight="10dp"
         android:layout_toLeftOf="@+id/ivDelete"
         android:layout_toRightOf="@+id/ivFeatureImage"
         android:maxLines="2"
@@ -26,15 +26,17 @@
         android:text="desc" />
 
     <ImageView
+        android:layout_marginTop="8dp"
         android:id="@+id/ivDelete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp"
         android:src="@android:drawable/ic_delete" />
 
     <TextView
         android:id="@+id/tvAmount"
-        style="@style/TextViewStyle.Small"
+        style="@style/TextViewStyle.Large"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/prodDesc"
@@ -51,20 +53,21 @@
         android:id="@+id/tvQ"
         style="@style/TextViewStyle.Small"
         android:layout_width="wrap_content"
-        android:layout_height="20dp"
+        android:layout_height="30dp"
         android:layout_alignBottom="@+id/tvMinus"
         android:layout_alignLeft="@+id/tvAmount"
         android:layout_alignStart="@+id/tvAmount"
         android:layout_marginRight="5dp"
         android:gravity="center"
         android:maxLines="1"
-        android:text="Qty : " />
+        android:text="Qty : "
+        android:textSize="15sp" />
 
 
     <TextView
         android:id="@+id/tvMinus"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:layout_below="@+id/tvAmount"
         android:layout_marginLeft="5dp"
         android:layout_marginTop="5dp"
@@ -74,13 +77,13 @@
         android:padding="3dp"
         android:text="-"
         android:textColor="@android:color/white"
-        android:textSize="10sp" />
+        android:textSize="15sp" />
 
     <TextView
         android:id="@+id/tvCount"
         style="@style/TextViewStyle.Small"
         android:layout_width="wrap_content"
-        android:layout_height="20dp"
+        android:layout_height="30dp"
         android:layout_alignBottom="@+id/tvMinus"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
@@ -89,12 +92,13 @@
         android:gravity="center"
         android:maxLines="1"
         android:text="1"
-        android:textColor="@color/black" />
+        android:textColor="@color/black"
+        android:textSize="15sp" />
 
     <TextView
         android:id="@+id/tvPlus"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:layout_below="@+id/tvAmount"
         android:layout_marginLeft="5dp"
         android:layout_marginTop="5dp"
@@ -104,7 +108,7 @@
         android:padding="3dp"
         android:text="+"
         android:textColor="@android:color/white"
-        android:textSize="10sp" />
+        android:textSize="15sp" />
 
     <View
         android:layout_width="match_parent"
