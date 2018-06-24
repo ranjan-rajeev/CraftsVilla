@@ -1,6 +1,7 @@
 package com.craftsvilla.dashboard;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -14,6 +15,8 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.craftsvilla.BaseFragment;
 import com.craftsvilla.R;
+import com.craftsvilla.productdetails.ProductDetailsActivity;
+import com.craftsvilla.productdetails.ProductZoomActivity;
 import com.synnapps.carouselview.CarouselView;
 import com.synnapps.carouselview.ImageClickListener;
 import com.synnapps.carouselview.ImageListener;
@@ -61,7 +64,7 @@ public class DashboardFragment extends BaseFragment {
             @Override
             public void onClick(int position) {
                 //startActivity(new Intent(MainActivity.this, WebViewActivity.class).putExtra("URL", productsEntities.get(position).getProduct_Url()));
-                Toast.makeText(getActivity(), "Clicked item: " + position, Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(getActivity(), ProductZoomActivity.class).putExtra("URL", corosoulList.get(position)));
             }
         });
         //endregion
